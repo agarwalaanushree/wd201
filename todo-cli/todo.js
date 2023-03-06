@@ -31,12 +31,12 @@ const todoList = () => {
     let result = "";
     let n = list.length;
     for (let i = 0; i < n; i++) {
-      if (list[i].dueDate && list[i].dueDate === today) {
+      if (list[i].dueDate && list[i].dueDate != today) {
         if (list[i].completed === true)
           result += "[x] " + list[i].title + " " + list[i].dueDate + "\n";
         else result += "[ ] " + list[i].title + " " + list[i].dueDate + "\n";
       } else {
-        if (list[i].dueDate !== today) {
+        if (list[i].dueDate === today) {
           if (list[i].completed === true)
             result += "[x] " + list[i].title + "\n";
           else result += "[ ] " + list[i].title + "\n";
