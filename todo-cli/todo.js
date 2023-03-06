@@ -39,15 +39,22 @@ const todoList = () => {
   const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
-    let result = "";
-    list.forEach((todo, index) => {
-      result += `${index + 1}. [${todo.completed ? "x" : " "}] ${todo.title} ${
-        new Date(todo.dueDate).toDateString() === new Date().toDateString()
-          ? ""
-          : "(" + new Date(todo.dueDate).toLocaleDateString() + ")"
-      }\n`;
-    });
-    return result;
+    return list
+      .map((item, index) => {
+        const checkbox = item.completed ? "[x]" : "[ ]";
+        const title = item.title;
+        const date = new Date(item.dueDate);
+        const dateString =
+          new Date(date).toDateString() === new Date().toDateString()
+            ? " "
+            : date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
+        return `${checkbox} ${title} ${dateString}`;
+      })
+      .join("\n");
   };
 
   return {
