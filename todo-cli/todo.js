@@ -28,20 +28,21 @@ const todoList = () => {
     return all.filter((todo) => new Date(todo.dueDate) === tomorrow);
   };
 
-  const toDisplayableList = (list) => {
+    const toDisplayableList = (list, today) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
-    let result = " ";
+    let result = "";
     let n = list.length;
     for (let i = 0; i < n; i++) {
-      if (list[i].dueDate && list[i].dueDate == today) {
-        if (list[i].completed == true)
-          result += "[x]" + list[i].title + list[i].dueDate + "\n";
-        else result += "[ ]" + list[i].title + list[i].dueDate + "\n";
+      if (list[i].dueDate && list[i].dueDate === today) {
+        if (list[i].completed === true)
+          result += "[x] " + list[i].title + " " + list[i].dueDate + "\n";
+        else result += "[ ] " + list[i].title + " " + list[i].dueDate + "\n";
       } else {
-        if (list[i].dueDate != today) {
-          if (list[i].completed == true) result += "[x]" + list[i].title + "\n";
-          else result += "[ ]" + list[i].title + "\n";
+        if (list[i].dueDate !== today) {
+          if (list[i].completed === true)
+            result += "[x] " + list[i].title + "\n";
+          else result += "[ ] " + list[i].title + "\n";
         }
       }
     }
