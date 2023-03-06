@@ -32,7 +32,7 @@ const todoList = () => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
     let result = " ";
-    let n = list.length();
+    let n = list.length;
     for (let i = 0; i < n; i++) {
       if (list[i].dueDate && list[i].dueDate == today) {
         if (list[i].completed == true)
