@@ -11,50 +11,40 @@ const todoList = () => {
     // Write the date check condition here and return the array
     // of overdue items accordingly.
     const today = new Date();
-    return all.filter(
-      (todo) => new Date(todo.dueDate) < today && !todo.completed
-    );
+    return all.filter((todo) => new Date(todo.dueDate) === yesterday);
   };
 
   const dueToday = () => {
     // Write the date check condition here and return the array
     // of todo items that are due today accordingly.
     const today = new Date();
-    return all.filter(
-      (todo) =>
-        new Date(todo.dueDate).toDateString === today.toDateString &&
-        !todo.completed
-    );
+    return all.filter((todo) => new Date(todo.dueDate) === today);
   };
 
   const dueLater = () => {
     // Write the date check condition here and return the array
     // of todo items that are due later accordingly.
     const today = new Date();
-    return all.filter(
-      (todo) => new Date(todo.dueDate) > today && !todo.completed
-    );
+    return all.filter((todo) => new Date(todo.dueDate) === tomorrow);
   };
 
   const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
-    return list
-      .map((item, index) => {
-        const checkbox = item.completed ? "[x]" : "[ ]";
-        const title = item.title;
-        const date = new Date(item.dueDate);
-        const dateString =
-          new Date(date).toDateString() === new Date().toDateString()
-            ? " "
-            : date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              });
-        return `${checkbox} ${title} ${dateString}`;
-      })
-      .join("\n");
+    result = " ";
+    n = list.length();
+    for (i = 0; i < n; i++) {
+      if (list[i].dueDate && list[i].dueDate == today) {
+        if (list[i].completed == true)
+          result += "[x]" + list[i].title + list[i].dueDate + "\n";
+        else result += "[ ]" + list[i].title + list[i].dueDate + "\n";
+      } else {
+        if (list[i].dueDate != today) {
+          if (list[i].completed == true) result += "[x]" + list[i].title + "\n";
+          else result += "[ ]" + list[i].title + "\n";
+        }
+      }
+    }
   };
 
   return {
