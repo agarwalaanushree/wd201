@@ -11,24 +11,34 @@ const todoList = () => {
     // Write the date check condition here and return the array
     // of overdue items accordingly.
     const today = new Date();
-    return all.filter((todo) => new Date(todo.dueDate) === yesterday);
+    return all.filter((todo) => new Date(todo.dueDate) < today);
   };
 
   const dueToday = () => {
     // Write the date check condition here and return the array
     // of todo items that are due today accordingly.
     const today = new Date();
-    return all.filter((todo) => new Date(todo.dueDate) === today);
+    return all.filter((todo) => {
+      const dueDate = new Date(todo.dueDate);
+      return (
+        dueDate.getDate() === today.getDate() &&
+        dueDate.getMonth() === today.getMonth() &&
+        dueDate.getFullYear() === today.getFullYear()
+      );
+    });
   };
 
   const dueLater = () => {
     // Write the date check condition here and return the array
     // of todo items that are due later accordingly.
     const today = new Date();
-    return all.filter((todo) => new Date(todo.dueDate) === tomorrow);
+    return all.filter((todo) => {
+      const dueDate = new Date(todo.dueDate);
+      return dueDate > today && dueDate.getDate() !== today.getDate();
+    });
   };
 
-    const toDisplayableList = (list, today) => {
+  const toDisplayableList = (list, today) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
     let result = "";
