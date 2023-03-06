@@ -31,9 +31,9 @@ const todoList = () => {
   const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
-    result = " ";
-    n = list.length();
-    for (i = 0; i < n; i++) {
+    let result = " ";
+    let n = list.length();
+    for (let i = 0; i < n; i++) {
       if (list[i].dueDate && list[i].dueDate == today) {
         if (list[i].completed == true)
           result += "[x]" + list[i].title + list[i].dueDate + "\n";
@@ -45,6 +45,7 @@ const todoList = () => {
         }
       }
     }
+    return result;
   };
 
   return {
