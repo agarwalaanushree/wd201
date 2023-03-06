@@ -25,7 +25,7 @@ const todoList = () => {
     return all.filter((todo) => todo.dueDate == tomorrow);
   };
 
-  const toDisplayableList = (list, today) => {
+  const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
     let result = "";
